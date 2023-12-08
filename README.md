@@ -25,7 +25,7 @@ The tool offers convenient commands for installing, using, and removing specific
 ``` bash
 go install github.com/liyu36/kubectl-version-manager@latest
 # or
-version="v0.1.0"
+version="v0.1.1"
 wget -O kubectl-version-manager https://github.com/liyu36/kubectl-version-manager/releases/download/${version}/kubectl-version-manager-${version}-darwin-arm64
 mv kubectl-version-manager /usr/local/bin/
 
