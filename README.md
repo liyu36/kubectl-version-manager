@@ -71,5 +71,5 @@ kvm list [regexp]
 ### Remove specific version
 
 ``` bash
-kvmremove <version>
+kvm remove <version>
 ```
