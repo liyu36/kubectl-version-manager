@@ -23,13 +23,15 @@ var (
 
 func installCmd() *cobra.Command {
 	installCmd := &cobra.Command{
-		Use:   "install",
-		Short: "Install the specified version of kubectl, default to the latest stable version",
+		Use:     "install",
+		Aliases: []string{"i"},
+		Short:   "Install the specified version of kubectl, default to the latest stable version",
 		Long: fmt.Sprintf(`
 	Install the specified version of the kubectl command,
 	default to using the %s address to download the latest stable version`, GetKubernetesAcceleratedDownloadURL("vx.x.x")),
-		Args: cobra.MaximumNArgs(1),
-		Run:  install,
+		Args:    cobra.MaximumNArgs(1),
+		Example: fmt.Sprintf("  %s %s v1.28.4\n  %s %s // it install latest stable version", rootCmd.Name(), "install", rootCmd.Name(), "install"),
+		Run:     install,
 	}
 
 	installCmd.Flags().BoolVarP(&InstallCmdProgressFlag, "quiet", "q", false, "Hide download progress")

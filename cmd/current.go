@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"path/filepath"
+	"strings"
 
 	"github.com/spf13/cobra"
 )
@@ -26,5 +27,6 @@ func current(cmd *cobra.Command, args []string) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Printf("%s -> %s\n", GetCurrentKubectlPath(), path)
+	s := strings.TrimPrefix(path, filepath.Join(GetBaseDir(), "kubectl-"))
+	fmt.Println(s)
 }

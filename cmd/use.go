@@ -15,9 +15,10 @@ func init() {
 func useCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:     "use",
+		Aliases: []string{"set"},
 		Short:   "Use the specified version of kubectl",
 		Args:    cobra.ExactArgs(1),
-		Example: fmt.Sprintf("  %s %s v1.28.4\n  %s %s stable", rootCmd.Name(), "use", rootCmd.Name(), "use"),
+		Example: fmt.Sprintf("  %s %s v1.28.4", rootCmd.Name(), "use"),
 		Run:     use,
 	}
 }

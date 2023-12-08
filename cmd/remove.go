@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
 	"path/filepath"
 	"strings"
@@ -16,10 +17,12 @@ var removeCmdForceFlag bool
 
 func removeCmd() *cobra.Command {
 	removeCmd := &cobra.Command{
-		Use:   "remove",
-		Short: "Delete the specified version of kubectl",
-		Args:  cobra.ExactArgs(1),
-		Run:   remove,
+		Use:     "remove",
+		Aliases: []string{"rm"},
+		Short:   "Delete the specified version of kubectl",
+		Args:    cobra.ExactArgs(1),
+		Example: fmt.Sprintf("  %s %s v1.28.4", rootCmd.Name(), "remove"),
+		Run:     remove,
 	}
 
 	removeCmd.Flags().BoolVarP(&removeCmdForceFlag, "force", "f", false, "Force delete this version")

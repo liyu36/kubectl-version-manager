@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/spf13/cobra"
@@ -27,9 +28,22 @@ func show(cmd *cobra.Command, args []string) {
 		log.Fatalln(err)
 	}
 
+	path, err := filepath.EvalSymlinks(GetCurrentKubectlPath())
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	basename := filepath.Base(path)
+
 	for _, file := range files {
-		if strings.HasPrefix(file.Name(), "kubectl-") {
-			fmt.Println(strings.TrimPrefix(file.Name(), "kubectl-"))
+		if !strings.HasPrefix(file.Name(), "kubectl-") {
+			continue
 		}
+
+		if strings.EqualFold(file.Name(), basename) {
+			fmt.Printf("%s *\n", strings.TrimPrefix(file.Name(), "kubectl-"))
+			continue
+		}
+		fmt.Println(strings.TrimPrefix(file.Name(), "kubectl-"))
 	}
 }

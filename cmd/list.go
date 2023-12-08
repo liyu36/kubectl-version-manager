@@ -14,12 +14,10 @@ func init() {
 
 func listCmd() *cobra.Command {
 	return &cobra.Command{
-		Use:   "list",
-		Short: fmt.Sprintf("Retrieve the list of kubectl versions from %s", GetkubernetesSourceGitURL()),
-		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("list called")
-		},
-		RunE: list,
+		Use:     "list",
+		Aliases: []string{"ls"},
+		Short:   fmt.Sprintf("Retrieve the list of kubectl versions from %s", GetkubernetesSourceGitURL()),
+		RunE:    list,
 	}
 }
 
