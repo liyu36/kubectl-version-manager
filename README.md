@@ -1,6 +1,10 @@
 # kubectl-version-manager
 
-kubectl-version-manager is a simple tool for managing versions of the kubectl command. It provides convenient commands for installing, using specific versions, displaying the current version, listing available versions, and removing specified versions of kubectl.
+kubectl-version-manager is a straightforward tool designed to manage various versions of the kubectl command.
+
+It achieves this by creating symbolic link across different versions.
+
+The tool offers convenient commands for installing, using, and removing specific versions, as well as displaying the current version and listing available versions of kubectl.
 
 ## Features
 
@@ -26,9 +30,10 @@ wget -O kubectl-version-manager https://github.com/liyu36/kubectl-version-manage
 mv kubectl-version-manager /usr/local/bin/
 
 # ~/.bash_profile
+export PATH="~/.kube/bin:$PATH"
 source <(kubectl-version-manager completion bash)
-complete -F __start_kubectl-version-manager k-vm
-alias k-vm="kubectl-version-manager"
+complete -F __start_kubectl-version-manager kvm
+alias kvm="kubectl-version-manager"
 ```
 
 ## Usage
@@ -36,35 +41,35 @@ alias k-vm="kubectl-version-manager"
 ### Install kubectl
 
 ``` bash
-kubectl-version-manager install <version>
+kvm install <version>
 ```
 
 ### View installed version
 
 ``` bash
-kubectl-verion-manager show
+kvm show
 ```
 
 ### Use specific version
 
 ``` bash
-kubectl-version-manager use <version>
+kvm use <version>
 ```
 
 ### Display current version
 
 ``` bash
-kubectl-version-manager current
+kvm current
 ```
 
 ### List available versions
 
 ``` bash
-kubectl-version-manager list [regexp]
+kvm list [regexp]
 ```
 
 ### Remove specific version
 
 ``` bash
-kubectl-version-manager remove <version>
+kvmremove <version>
 ```
